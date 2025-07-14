@@ -19,5 +19,4 @@ model Entry {
   tags      String
   highlight Boolean
   createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
 }

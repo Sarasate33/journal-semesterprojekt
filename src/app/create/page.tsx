@@ -1,5 +1,13 @@
-
-
 export default function CreateEntry() {
-  return <h1>create a new entry</h1>;
+  return (
+    <div>
+      <p className="text-2xl">create a new entry</p>
+
+      <div>
+        <form>
+          
+        </form>
+      </div>
+    </div>
+  );
 }
