@@ -3,8 +3,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -15,11 +13,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-       <Header />
+        <Header />
         <main className="min-h-screen">{children}</main>
-      <Toaster richColors />
+        <Toaster richColors position="top-center" closeButton />
       </body>
-    
     </html>
   );
 }

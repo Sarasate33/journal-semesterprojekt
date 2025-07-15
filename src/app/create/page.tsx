@@ -10,14 +10,14 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { prisma } from "@/lib/prisma";
+import { EntryForm } from "@/components/entryForm";
 
-export default async function CreateEntry() {
+export default async function CreatePage() {
   const allTags = await prisma.tag.findMany();
 
   return (
     <div>
       <p className="text-2xl py-5 px-5">Create a new Journal Entry!</p>
-
       <div>
         <form>
           <div className="py-2 px-5">
