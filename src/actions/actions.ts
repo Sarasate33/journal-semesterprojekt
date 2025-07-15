@@ -1,21 +1,40 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { entrySchema } from "@/lib/entrySchema";
 
 export async function createEntry(formData: FormData) {
-  const tagId = formData.get("tags") as string;
+  const data = Object.fromEntries(formData);
   
+  const validatedFields = entrySchema.safeParse({
+    title: data.title,
+    content: data.content,
+    tags: [data.tags],
+  });
 
-  await prisma.entry.create({
-    data: {
-      title: formData.get("title") as string,
-      content: formData.get("content") as string,
-      highlight: false,
-      tags: {
-        connect: {
-          id: tagId,
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    await prisma.entry.create({
+      data: {
+        title: data.title as string,
+        content: data.content as string,
+        highlight: false,
+        tags: {
+          connect: {
+            id: data.tags as string,
+          },
         },
       },
-    },
-  });
+    });
+
+  
+    return { success: true };
+  } catch {
+    return { error: "Failed to create entry" };
+  }
 }
