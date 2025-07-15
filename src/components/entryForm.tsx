@@ -3,16 +3,17 @@
 import { validateEntry } from "@/lib/validateEntry";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "@/components/ui/select";
 import { useActionState } from "react";
+import { EntryFormState } from "@/lib/validateEntry";
 import { toast } from "sonner";
 
 type Tag = {
@@ -23,31 +24,25 @@ type Tag = {
 interface EntryFormProps {
   tags: Tag[];
 }
-type EntryFormState =
-  | { errors: { title?: string[]; content?: string[] } }
-  | { success: string };
 
 const initialState: EntryFormState = { errors: {} };
 
 export function EntryForm({ tags }: EntryFormProps) {
-  const handleSubmit = () => {
-    if(hasSuccess) {
-    toast.success("Sucessfully submitted!");
-    }
-  };
-
   const [state, formAction] = useActionState(validateEntry, initialState);
 
   const hasErrors = "errors" in state;
   const hasSuccess = "success" in state;
 
+  const handleSubmit = () => {
+    if (hasSuccess) {
+      toast.success("Sucessfully submitted!");
+    }
+  };
 
   return (
     <form action={formAction} onSubmit={handleSubmit}>
       <div className="py-2 px-5">
-        <Label htmlFor="title" className="py-2">
-          Title
-        </Label>
+        <Label className="py-2">Title</Label>
         <Input id="title" name="title" type="text" placeholder="Title" />
         {hasErrors && state.errors.title && (
           <p className="text-sm text-red-500">{state.errors.title}</p>
@@ -63,9 +58,9 @@ export function EntryForm({ tags }: EntryFormProps) {
             <SelectValue placeholder="Select a tag" />
           </SelectTrigger>
           <SelectContent>
-            {tags.map((tag) => (
-              <SelectItem key={tag.id} value={tag.id}>
-                {tag.label}
+            {tags.map((tagElement) => (
+              <SelectItem key={tagElement.id} value={tagElement.id}>
+                {tagElement.label}
               </SelectItem>
             ))}
           </SelectContent>
@@ -73,9 +68,7 @@ export function EntryForm({ tags }: EntryFormProps) {
       </div>
 
       <div className="py-2 px-5">
-        <Label htmlFor="content" className="py-2">
-          Write down your thoughts ...
-        </Label>
+        <Label className="py-2">Write down your thoughts ...</Label>
         <Textarea id="content" name="content" placeholder="Content" />
         {hasErrors && state.errors.content && (
           <p className="text-sm text-red-500">{state.errors.content}</p>

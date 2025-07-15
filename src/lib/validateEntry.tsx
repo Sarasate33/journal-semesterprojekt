@@ -1,9 +1,10 @@
 "use server";
 
+import { createEntry } from "@/actions/actions";
 import { entrySchema } from "@/lib/entrySchema";
 
 export type EntryFormState =
-  { errors: { title?: string[]; content?: string[] } }
+  | { errors: { title?: string[]; content?: string[] } }
   | { success: string };
 
 export async function validateEntry(
@@ -23,6 +24,7 @@ export async function validateEntry(
     };
   }
 
+  await createEntry(formData);
   return {
     success: "Your entry was saved successfully!",
   };
