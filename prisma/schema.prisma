@@ -16,7 +16,13 @@ model Entry {
   id        String     @id @default(cuid())
   title     String
   content   String     
-  tags      String
+  tags      Tag[]
   highlight Boolean
   createdAt DateTime   @default(now())
+}
+
+model Tag {
+  id        String    @id @default(cuid())
+  label     String    @unique
+  entries   Entry[]
 }

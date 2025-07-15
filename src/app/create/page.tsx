@@ -1,10 +1,18 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { prisma } from "@/lib/prisma";
 
 export default async function CreateEntry() {
-  const allTags = await prisma.entry.findMany({select: {tags}});
+  const allTags = await prisma.tag.findMany();
 
   return (
     <div>
@@ -12,42 +20,33 @@ export default async function CreateEntry() {
 
       <div>
         <form>
-      
           <div className="py-2 px-5">
-            <Label>Title</Label>
-            <Input
-              type="text"
-              placeholder="Title"
-              className="mt-4 w-full"
-            ></Input>
-          </div>
-           <div className="py-2 px-5">
-            <Label>Tags</Label>
-            <Select >
-                  <SelectTrigger
-                  >
-                    <SelectValue placeholder="Select a tag" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {entries[tags].map((entry) => {
-                      return (
-                        <SelectItem key={entry.id} value={tag.id}>
-                          <span className="felx items-center gab-2">
-                            {tag.label}
-                          </span>
-                        </SelectItem>
-                      );
-                    })}
-                  </SelectContent>
-                </Select>
+            <Label className="py-2">Title</Label>
+            <Input type="text" placeholder="Title"></Input>
           </div>
           <div className="py-2 px-5">
-            <Label>Content</Label>
-            <Input
-              type="text"
-              placeholder="Content"
-              className="mt-4 w-full"
-            ></Input>
+            <Label className="py-2">Tags</Label>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a tag" />
+              </SelectTrigger>
+              <SelectContent>
+                {allTags.map((tag) => (
+                  <SelectItem key={tag.id} value={tag.label}>
+                    <span className="felx items-center gab-2">{tag.label}</span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="py-2 px-5">
+            <Label className="py-2">Write down your thoughts ...</Label>
+            <Textarea placeholder="Content"></Textarea>
+          </div>
+          <div className="py-2 px-5">
+            <Button type="submit" variant="default">
+              Submit
+            </Button>
           </div>
         </form>
       </div>
