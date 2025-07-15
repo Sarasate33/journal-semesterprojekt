@@ -1,3 +1,4 @@
+import { createEntry } from "@/actions/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,21 +20,21 @@ export default async function CreateEntry() {
       <p className="text-2xl py-5 px-5">Create a new Journal Entry!</p>
 
       <div>
-        <form>
+        <form action={createEntry}>
           <div className="py-2 px-5">
             <Label className="py-2">Title</Label>
-            <Input type="text" placeholder="Title"></Input>
+            <Input name="title" type="text" placeholder="Title"></Input>
           </div>
           <div className="py-2 px-5">
             <Label className="py-2">Tags</Label>
-            <Select>
+            <Select name="tags">
               <SelectTrigger>
                 <SelectValue placeholder="Select a tag" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent >
                 {allTags.map((tag) => (
-                  <SelectItem key={tag.id} value={tag.label}>
-                    <span className="felx items-center gab-2">{tag.label}</span>
+                  <SelectItem key={tag.id} value={tag.id}>
+                    <span className="flex items-center gab-2">{tag.label}</span>
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -41,7 +42,7 @@ export default async function CreateEntry() {
           </div>
           <div className="py-2 px-5">
             <Label className="py-2">Write down your thoughts ...</Label>
-            <Textarea placeholder="Content"></Textarea>
+            <Textarea name="content" placeholder="Content"></Textarea>
           </div>
           <div className="py-2 px-5">
             <Button type="submit" variant="default">
