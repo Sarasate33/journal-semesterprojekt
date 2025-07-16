@@ -1,8 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import "./globals.css";
+import { DisplayEntries } from "@/components/displayEntries";
 
 export default async function Page() {
-  const entries = await prisma.entry.findMany();
+  const entries = await prisma.entry.findMany({
+    include: {
+      tags:  true,
+    },
+  });
 
   return (
     <div>
@@ -12,11 +17,7 @@ export default async function Page() {
         <p className="flex-1 text-left">highlights</p>
       </div>
       <div>
-        <ul>
-          {entries.map((entry) => (
-            <li key={entry.id}>{entry.title}</li>
-          ))}
-        </ul>
+        <DisplayEntries entries={entries} />
       </div>
     </div>
   );

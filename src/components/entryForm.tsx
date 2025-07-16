@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { EntryFormState } from "@/lib/validateEntry";
 import { toast } from "sonner";
 
@@ -33,14 +33,15 @@ export function EntryForm({ tags }: EntryFormProps) {
   const hasErrors = "errors" in state;
   const hasSuccess = "success" in state;
 
-  const handleSubmit = () => {
+  useEffect(() => {
     if (hasSuccess) {
-      toast.success("Sucessfully submitted!");
+      toast.success("Successfully submitted!");
+      console.log("Server action completed successfully");
     }
-  };
+  }, [hasSuccess]);
 
   return (
-    <form action={formAction} onSubmit={handleSubmit}>
+    <form action={formAction}>
       <div className="py-2 px-5">
         <Label className="py-2">Title</Label>
         <Input id="title" name="title" type="text" placeholder="Title" />
@@ -77,9 +78,6 @@ export function EntryForm({ tags }: EntryFormProps) {
 
       <div className="py-2 px-5">
         <Button type="submit">Submit</Button>
-        {hasSuccess && (
-          <p className="text-sm text-green-500">{state.success}</p>
-        )}
       </div>
     </form>
   );

@@ -1,5 +1,5 @@
 
-import { EntryForm } from "@/components/EntryForm";
+import { EntryForm } from "@/components/entryForm";
 
 import { prisma } from "@/lib/prisma";
 
