@@ -5,16 +5,12 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useActionState, useEffect } from "react";
 import { EntryFormState } from "@/lib/validateEntry";
 import { toast } from "sonner";
+import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
+import { useState } from "react";
+import { Card } from "./ui/card";
 
 type Tag = {
   id: string;
@@ -28,6 +24,7 @@ interface EntryFormProps {
 const initialState: EntryFormState = { errors: {} };
 
 export function EntryForm({ tags }: EntryFormProps) {
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [state, formAction] = useActionState(validateEntry, initialState);
 
   const hasErrors = "errors" in state;
@@ -41,6 +38,8 @@ export function EntryForm({ tags }: EntryFormProps) {
   }, [hasSuccess]);
 
   return (
+    <div className="py-5 px-5">
+    <Card>
     <form action={formAction}>
       <div className="py-2 px-5">
         <Label className="py-2">Title</Label>
@@ -54,18 +53,21 @@ export function EntryForm({ tags }: EntryFormProps) {
         <Label htmlFor="tags" className="py-2">
           Tags
         </Label>
-        <Select name="tags">
-          <SelectTrigger>
-            <SelectValue placeholder="Select a tag" />
-          </SelectTrigger>
-          <SelectContent>
-            {tags.map((tagElement) => (
-              <SelectItem key={tagElement.id} value={tagElement.id}>
-                {tagElement.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <ToggleGroup
+          type="multiple"
+          id="tags"
+        
+          size="lg"
+          value={selectedTags}
+          onValueChange={setSelectedTags}
+        >
+          {tags.map((tagElement) => (
+            <ToggleGroupItem className="min-w-fit w-auto flex " key={tagElement.id} value={tagElement.id}>
+              {tagElement.label}
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
+        <input type="hidden" name="tags" value={selectedTags.join(",")} />
       </div>
 
       <div className="py-2 px-5">
@@ -80,5 +82,7 @@ export function EntryForm({ tags }: EntryFormProps) {
         <Button type="submit">Submit</Button>
       </div>
     </form>
+    </Card>
+    </div>
   );
 }

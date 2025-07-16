@@ -14,7 +14,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <Header />
-        {children}
+        <main className="container mx-auto">{children}</main>
+        
         <Toaster richColors position="top-center" closeButton />
       </body>
     </html>
