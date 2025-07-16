@@ -1,12 +1,15 @@
+"use client"
+
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "./ui/badge";
+import { Toggle } from "./ui/toggle";
+import { useState } from "react";
 
 type Tag = {
   id: string | null;
@@ -27,6 +30,8 @@ interface EntryFormProps {
 }
 
 export function DisplayEntries({ entries }: EntryFormProps) {
+  
+    const [stateHighlight, setStateHighlight] = useState<boolean>(false);
   const setString = (text: string) => {
     if (text.length <= 250) {
       return text;
@@ -41,7 +46,19 @@ export function DisplayEntries({ entries }: EntryFormProps) {
         {entries.map((entryElement) => (
           <Card className="min-h-70 " key={entryElement.id}>
             <CardHeader>
-              <CardTitle className="text-2xl">{entryElement.title}</CardTitle>
+              <CardTitle className="text-2xl">{entryElement.title}
+                <form>            <div className="py-2 px-5">
+              <Toggle
+                  className="min-w-fit w-auto flex "
+                  pressed={stateHighlight}
+                  onPressedChange={setStateHighlight}
+                >
+                  {entryElement.highlight ? "highlighted" : "not highlighted"}
+               
+              </Toggle>
+              <input type="hidden" name="highlight" />
+            </div></form>
+              </CardTitle>
               <CardDescription className="flex flex-wrap gap-2">
                 {entryElement.tags ? (
                   entryElement.tags.map((tagElement: Tag) => (

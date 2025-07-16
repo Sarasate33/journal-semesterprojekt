@@ -4,6 +4,9 @@ import { DisplayEntries } from "@/components/displayEntries";
 
 export default async function Page() {
   const entries = await prisma.entry.findMany({
+    orderBy:{
+      createdAt: "desc",
+    },
     include: {
       tags:  true,
     },
