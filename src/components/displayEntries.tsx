@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "./ui/badge";
 
 type Tag = {
   id: string | null;
@@ -35,12 +36,12 @@ export function DisplayEntries({ entries }: EntryFormProps) {
             <CardDescription>
               {entryElement.tags ? (
                 entryElement.tags.map((tagElement: Tag) => (
-                  <span
+                  <Badge
                     key={tagElement.id}
-                    className="inline-block bg-gray-200 rounded px-2 py-1 text-sm mr-2"
+                    
                   >
                     {tagElement.label}
-                  </span>
+                  </Badge>
                 ))
               ) : (
                 <span className="text-gray-500">No tags</span>
