@@ -2,8 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma/client"
 }
 
 datasource db {
@@ -17,7 +17,7 @@ model Entry {
   title     String
   content   String     
   tags      Tag[]
-  highlight Boolean
+  highlight Boolean    @default(false)
   createdAt DateTime   @default(now())
 
 @@map("entries")
