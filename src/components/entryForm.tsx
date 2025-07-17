@@ -12,6 +12,7 @@ import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 import { Toggle } from "./ui/toggle";
 import { useState } from "react";
 import { Card } from "./ui/card";
+import { Star } from "lucide-react";
 
 type Tag = {
   id: string;
@@ -43,29 +44,28 @@ export function EntryForm({ tags }: EntryFormProps) {
     <div className="py-5 px-5">
       <Card>
         <form action={formAction}>
-          <div className="py-2 px-5">
-            <Label className="py-2">Title</Label>
-            <Input id="title" name="title" type="text" placeholder="Title" />
-            {hasErrors && state.errors.title && (
-              <p className="text-sm text-red-500">{state.errors.title}</p>
-            )}
-          </div>
-          <div>
-
-            <div className="py-2 px-5">
-              <Toggle
-                  className="min-w-fit w-auto flex "
+          <Label className="px-5">Title</Label>
+          <div className="py-2 px-5 flex  gap-4">
+              
+            <div >
+              <Input id="title" name="title" type="text" placeholder="Title" />
+              {hasErrors && state.errors.title && (
+                <p className="text-sm text-red-500">{state.errors.title}</p>
+              )}
+            </div>
+            <div>
+              <div>
+                <Toggle
+                  size="lg"
+                  className=" data-[state=on]:bg-[#ffda7d] data-[state=on]:text-[#FFFFFF] rounded-full"
                   pressed={stateHighlight}
                   onPressedChange={setStateHighlight}
                 >
-                  {stateHighlight ? "highlighted" : "not highlighted"}
-               
-              </Toggle>
-              <input type="hidden" name="highlight"  />
+                  <Star />
+                </Toggle>
+                <input type="hidden" name="highlight" />
+              </div>
             </div>
-
-
-
           </div>
 
           <div className="py-2 px-5">

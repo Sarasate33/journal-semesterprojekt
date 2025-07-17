@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function createEntry(formData: FormData) {
   const tagIds = formData.get("tags") as string;
@@ -37,7 +38,6 @@ export async function createEntry(formData: FormData) {
 }
 
 export async function updateHighlight(formData: FormData) {
-  
   const stringHighlight = formData.get("highlight") as string;
   const boolHighlight: boolean = stringHighlight.toLowerCase() == "true";
 
@@ -47,8 +47,8 @@ export async function updateHighlight(formData: FormData) {
     },
     data: {
       highlight: boolHighlight,
-    }
-  })
+    },
+  });
 
-
+  revalidatePath("/");
 }
