@@ -117,12 +117,12 @@ export function DisplayEntries({ entries }: EntryFormProps) {
                 <SheetTrigger asChild>
                   <Button variant="outline">Read</Button>
                 </SheetTrigger>
-                  <SheetContent className="w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl">
-                <ScrollArea className="h-full w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl rounded-md border">
+                <SheetContent className="w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl">
+                  <ScrollArea className="h-full w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl rounded-md border">
                     <div className="py-5 px-10">
                       <SheetHeader>
                         <SheetTitle>
-                          <h1 className="text-3xl">{entryElement.title}</h1>
+                          <p className="text-3xl">{entryElement.title}</p>
                         </SheetTitle>
                         <SheetDescription className="flex flex-wrap gap-2">
                           {entryElement.tags.map((tagElement: Tag) => (
@@ -138,10 +138,9 @@ export function DisplayEntries({ entries }: EntryFormProps) {
                         </p>
                       </div>
                       <p>{entryElement.content}</p>
-                      
                     </div>
-                </ScrollArea>
-                  </SheetContent>
+                  </ScrollArea>
+                </SheetContent>
               </Sheet>
             </CardFooter>
           </Card>

@@ -4,21 +4,19 @@ import { SwitchDisplay } from "@/components/switchDisplay";
 
 export default async function Page() {
   const allEntries = await prisma.entry.findMany({
-    orderBy:{
+    orderBy: {
       createdAt: "desc",
     },
     include: {
-      tags:  true,
+      tags: true,
     },
-
-  
   });
   const highlightedEntries = await prisma.entry.findMany({
-    orderBy:{
+    orderBy: {
       createdAt: "desc",
     },
     include: {
-      tags:  true,
+      tags: true,
     },
     where: {
       highlight: true,
@@ -27,7 +25,10 @@ export default async function Page() {
 
   return (
     <div>
-      <SwitchDisplay allEntries={allEntries} highlightedEntries={highlightedEntries} />
+      <SwitchDisplay
+        allEntries={allEntries}
+        highlightedEntries={highlightedEntries}
+      />
     </div>
   );
 }

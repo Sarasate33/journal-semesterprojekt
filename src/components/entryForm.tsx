@@ -130,7 +130,9 @@ export function EntryForm({ tags }: EntryFormProps) {
               onChange={(e) => setNewTagInput(e.target.value)}
               placeholder="create a new Tag"
             />
-            <Button type="button" onClick={handleAddNewTag}>+</Button>
+            <Button type="button" onClick={handleAddNewTag}>
+              +
+            </Button>
           </div>
 
           <div className="py-2 px-5">

@@ -42,15 +42,15 @@ export function SwitchDisplay({
     <div>
       <div className="flex items-center py-5">
         <Button
-        variant="switchAll"
+          variant="switchAll"
           className="flex-1 text-right"
           onClick={() => setActiveDisplay("all")}
         >
           all ({allEntries.length})
         </Button>
         <p className="text center px-4">|</p>
-        <Button 
-        variant="switchHighlight"
+        <Button
+          variant="switchHighlight"
           className="flex-1 text-left"
           onClick={() => setActiveDisplay("highlights")}
         >
