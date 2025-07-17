@@ -19,10 +19,14 @@ model Entry {
   tags      Tag[]
   highlight Boolean
   createdAt DateTime   @default(now())
+
+  @@map("entries")
 }
 
 model Tag {
   id        String    @id @default(cuid())
   label     String    @unique
   entries   Entry[]
+
+  @@map("tags")
 }

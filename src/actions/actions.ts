@@ -45,6 +45,8 @@ export async function createEntry(formData: FormData) {
       },
     });
   }
+    revalidatePath("/");
+  revalidatePath("/create");
 }
 
 export async function updateHighlight(formData: FormData) {
