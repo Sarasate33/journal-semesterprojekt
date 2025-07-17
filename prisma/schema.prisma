@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgres"
   url      = env("DATABASE_POSTGRES_PRISMA_URL")
 }
 
@@ -20,7 +20,8 @@ model Entry {
   highlight Boolean
   createdAt DateTime   @default(now())
 
-  @@map("entries")
+@@map("entries")
+
 }
 
 model Tag {
@@ -28,5 +29,6 @@ model Tag {
   label     String    @unique
   entries   Entry[]
 
-  @@map("tags")
+
+@@map("tags")
 }
