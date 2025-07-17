@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -23,6 +24,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ScrollArea } from "./ui/scroll-area";
 
 type Tag = {
   id: string | null;
@@ -67,7 +69,7 @@ export function DisplayEntries({ entries }: EntryFormProps) {
     <div className="px-5 py-5">
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {entriesToShow.map((entryElement) => (
-          <Card className="min-h-70  " key={entryElement.id}>
+          <Card className="min-h-70 flex flex-col" key={entryElement.id}>
             <CardHeader>
               <CardTitle className="text-2xl flex justify-between">
                 {entryElement.title}{" "}
@@ -106,40 +108,44 @@ export function DisplayEntries({ entries }: EntryFormProps) {
               </CardDescription>
             </CardHeader>
 
-            <CardContent>
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="outline">Read more</Button>
-                </SheetTrigger>
-                <SheetContent>
-                  <SheetHeader>
-                    <SheetTitle>{entryElement.title}</SheetTitle>
-                    <SheetDescription>
-                      {entryElement.tags.map((tagElement: Tag) => (
-                        <Badge key={tagElement.id} className="mr-2">
-                          {tagElement.label}
-                        </Badge>
-                      ))}
-                    </SheetDescription>
-                  </SheetHeader>
-                  <div className="py-5">
-                    <p className="text-black/40">
-                      {entryElement.createdAt.toLocaleDateString()}
-                    </p>
-                  </div>
-                  <p>{entryElement.content}</p>
-                  <SheetFooter>
-                    <SheetClose asChild>
-                      <Button variant="outline">Close</Button>
-                    </SheetClose>
-                  </SheetFooter>
-                </SheetContent>
-              </Sheet>
+            <CardContent className="flex-1">
               <p className="pb-5 text-black/40">
                 {entryElement.createdAt.toLocaleDateString()}
               </p>
               <p>{setString(entryElement.content)}</p>
             </CardContent>
+            <CardFooter>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline">Read</Button>
+                </SheetTrigger>
+                  <SheetContent className="w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl">
+                <ScrollArea className="h-full w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl rounded-md border">
+                    <div className="py-5 px-10">
+                      <SheetHeader>
+                        <SheetTitle>
+                          <h1 className="text-3xl">{entryElement.title}</h1>
+                        </SheetTitle>
+                        <SheetDescription className="flex flex-wrap gap-2">
+                          {entryElement.tags.map((tagElement: Tag) => (
+                            <Badge key={tagElement.id} className="mr-2">
+                              {tagElement.label}
+                            </Badge>
+                          ))}
+                        </SheetDescription>
+                      </SheetHeader>
+                      <div className="py-2">
+                        <p className="text-black/40">
+                          {entryElement.createdAt.toLocaleDateString()}
+                        </p>
+                      </div>
+                      <p>{entryElement.content}</p>
+                      
+                    </div>
+                </ScrollArea>
+                  </SheetContent>
+              </Sheet>
+            </CardFooter>
           </Card>
         ))}
       </div>
