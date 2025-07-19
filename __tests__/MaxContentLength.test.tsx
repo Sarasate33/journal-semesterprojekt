@@ -14,7 +14,7 @@ jest.mock("../src/actions/actions", () => ({
 
 describe("PreviewText max 250 symbols", () => {
   const shortContent = "This is a short content.";
-  const longContent250 = "a".repeat(250);
+  const longContent251 = "a".repeat(251);
   const shortMockEntry = [
     {
       id: "1",
@@ -30,35 +30,35 @@ describe("PreviewText max 250 symbols", () => {
     {
       id: "2",
       title: "Long Entry",
-      content: longContent250,
+      content: longContent251,
       tags: [],
       highlight: false,
       createdAt: new Date("12.12.2025"),
     },
   ];
 
-  it("text shorter than 250 symbols is displayed in full", () => {
+  it("text shorter than or equal 250 symbols is displayed in full", () => {
     render(<DisplayEntries entries={shortMockEntry} />);
 
-    expect(shortContent.length).toBeLessThan(250);
+    expect(shortContent.length).toBeLessThan(251);
     expect(screen.getByText(shortContent)).toBeInTheDocument();
   });
 
-  it("text to be 250 symbols is shortend to 249 symbols with ... at the end", () => {
+  it("text to be 251 symbols is shortend to 250 symbols with ... at the end", () => {
     render(<DisplayEntries entries={longMockEntry} />);
-    expect(longContent250.length).toBe(250);
+    expect(longContent251.length).toBe(251);
 
-    const shortendText = longContent250.substring(0, 249) + "...";
+    const shortendText = longContent251.substring(0, 250) + "...";
 
     expect(screen.getByText(shortendText)).toBeInTheDocument();
     // queryByText wirft keinen Fehler wenn element not found, wirft null
-    expect(screen.queryByText(longContent250)).not.toBeInTheDocument();
+    expect(screen.queryByText(longContent251)).not.toBeInTheDocument();
   });
   it("full text should be display when Read Button is pressed", () => {
     render(<DisplayEntries entries={longMockEntry} />);
 
     const readButton = screen.getByText("Read");
     fireEvent.click(readButton);
-    expect(screen.getByText(longContent250)).toBeInTheDocument();
+    expect(screen.getByText(longContent251)).toBeInTheDocument();
   });
 });

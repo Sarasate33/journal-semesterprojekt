@@ -49,11 +49,11 @@ export function DisplayEntries({ entries }: EntryFormProps) {
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
 
   const setString = (text: string) => {
-    if (text.length < 250) {
+    if (text.length <= 250) {
       return text;
     }
 
-    return text.substring(0, 249) + "...";
+    return text.substring(0, 250) + "...";
   };
 
   const loadMore = () => {
@@ -69,7 +69,10 @@ export function DisplayEntries({ entries }: EntryFormProps) {
         {entriesToShow.map((entryElement) => (
           <Card className="min-h-70 flex flex-col" key={entryElement.id}>
             <CardHeader>
-              <CardTitle araia-label="title" className="text-2xl flex justify-between">
+              <CardTitle
+                araia-label="title"
+                className="text-2xl flex justify-between"
+              >
                 <h2>{entryElement.title}</h2>
                 <div className="py-2 px-5 ">
                   <input
@@ -115,7 +118,9 @@ export function DisplayEntries({ entries }: EntryFormProps) {
             <CardFooter>
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="outline" aria-label="read-button">Read</Button>
+                  <Button variant="outline" aria-label="read-button">
+                    Read
+                  </Button>
                 </SheetTrigger>
                 <SheetContent className="w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl">
                   <ScrollArea className="h-full w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl rounded-md border">
