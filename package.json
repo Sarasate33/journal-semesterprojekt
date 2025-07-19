@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev ",
+    "setup": "prisma db push && prisma generate",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
