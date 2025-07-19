@@ -1,5 +1,5 @@
 /*
-Test von Pflichtfeature 4
+Test von Pflichtfeature 4: Erstmal nur 249 Zeichen angezeigt, dann nach Button-press komplett
 */
 
 
@@ -22,7 +22,7 @@ describe("PreviewText max 250 symbols", () => {
       content: shortContent,
       tags: [],
       highlight: false,
-      createdAt: new Date("2025-01-01"),
+      createdAt: new Date("11.11.2025"),
     },
   ];
 
@@ -33,7 +33,7 @@ describe("PreviewText max 250 symbols", () => {
       content: longContent250,
       tags: [],
       highlight: false,
-      createdAt: new Date("2025-01-01"),
+      createdAt: new Date("12.12.2025"),
     },
   ];
 

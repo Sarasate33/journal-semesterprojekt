@@ -1,5 +1,5 @@
 /*
-Test von Pflichtfeature 3.1
+Test von Pflichtfeature 3.1: Filter von highlighted Einträgen
 */
 
 import React from "react";
@@ -19,6 +19,10 @@ type Tag = {
   id: string;
   label: string;
 };
+
+jest.mock("../src/actions/actions", () => ({
+  updateHighlight: jest.fn(),
+}))
 
 jest.mock("../src/components/displayEntries", () => ({
   DisplayEntries: ({ entries }: { entries: Entry[] }) => (
@@ -103,4 +107,6 @@ describe("SwitchDisplay", () => {
     expect(screen.getByText("Test Entry 1")).toBeInTheDocument();
     expect(screen.getByText("Test Entry 2")).toBeInTheDocument();
   });
+
+
 });

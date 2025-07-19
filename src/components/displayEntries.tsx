@@ -69,8 +69,8 @@ export function DisplayEntries({ entries }: EntryFormProps) {
         {entriesToShow.map((entryElement) => (
           <Card className="min-h-70 flex flex-col" key={entryElement.id}>
             <CardHeader>
-              <CardTitle className="text-2xl flex justify-between">
-                {entryElement.title}{" "}
+              <CardTitle araia-label="title" className="text-2xl flex justify-between">
+                <h2>{entryElement.title}</h2>
                 <div className="py-2 px-5 ">
                   <input
                     type="hidden"
