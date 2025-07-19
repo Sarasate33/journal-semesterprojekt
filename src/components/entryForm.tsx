@@ -105,15 +105,17 @@ export function EntryForm({ tags }: EntryFormProps) {
               Tags
             </Label>
             <ToggleGroup
+
               type="multiple"
               id="tags"
+              
               size="lg"
               value={selectedTags}
               onValueChange={setSelectedTags}
             >
               {allTags.map((tagElement) => (
                 <ToggleGroupItem
-                  className="min-w-fit w-auto flex "
+                  className="min-w-fit w-auto flex data-[state=on]:bg-[#F67AA7] data-[state=on]:text-[#FFFFFF]"
                   key={tagElement.id}
                   value={tagElement.label}
                 >
@@ -123,16 +125,18 @@ export function EntryForm({ tags }: EntryFormProps) {
             </ToggleGroup>
             <input type="hidden" name="tags" value={selectedTags.join(",")} />
           </div>
-          <div className="px-5 w-fit">
+          <div className="px-5 w-fit flex justify-between">
             <Input
               type="text"
               value={newTagInput}
               onChange={(e) => setNewTagInput(e.target.value)}
-              placeholder="create a new Tag"
+              placeholder="Create a new Tag"
             />
-            <Button type="button" onClick={handleAddNewTag}>
-              +
-            </Button>
+            <div className="px-5">
+              <Button type="button" onClick={handleAddNewTag}>
+                +
+              </Button>
+            </div>
           </div>
 
           <div className="py-2 px-5">

@@ -20,12 +20,12 @@ model Entry {
   highlight Boolean    @default(false)
   createdAt DateTime   @default(now())
 
-
 }
 
 model Tag {
   id        String    @id @default(cuid())
   label     String    @unique
   entries   Entry[]
+
 
 }

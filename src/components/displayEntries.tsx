@@ -49,11 +49,11 @@ export function DisplayEntries({ entries }: EntryFormProps) {
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
 
   const setString = (text: string) => {
-    if (text.length <= 250) {
+    if (text.length < 250) {
       return text;
     }
 
-    return text.substring(0, 250) + "...";
+    return text.substring(0, 249) + "...";
   };
 
   const loadMore = () => {
@@ -115,7 +115,7 @@ export function DisplayEntries({ entries }: EntryFormProps) {
             <CardFooter>
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="outline">Read</Button>
+                  <Button variant="outline" aria-label="read-button">Read</Button>
                 </SheetTrigger>
                 <SheetContent className="w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl">
                   <ScrollArea className="h-full w-[95%] max-w-5xl sm:max-w-5xl md:max-w-6xl rounded-md border">
