@@ -2,6 +2,8 @@
 
 ## Anleitung
 
+Sie sollten bereits eine sqlite-Datenbank (dev.db im Ordner "prisma) und ein .env in der Zip vorfinden.
+
 ### Setup
 
 1. (Node.js muss installiert sein)
@@ -15,6 +17,10 @@
 ### Run
 
 Für jede weitere Ausführung reicht: npm run dev.
+
+Ich habe Ihnen meine sqlite-Datenbank mitgegeben. Sollten Sie die Einträge anschauen wollen, können Sie das tun mit dem Befehl: npx prisma studio.
+
+Möchten Sie alle Einträge in der sqlite-Datenbank löschen, können Sie das tun mit dem Befehl: npx prisma migrate reset.
 
 ## Implementierte Features
 
@@ -70,9 +76,9 @@ Diese Funktion wurde mithilfe eines useState implementiert. Es werden zunächst 
 
 ## Testing
 
-Ich habe 3 Tests gebaut um 3 Pflichtfeatures zu testen
+Ich habe 3 Tests gebaut um 3 Pflichtfeatures zu testen.
 
-Ausführung mit: npm run test
+Ausführung mit: npm run test.
 
 ### display.test
 
