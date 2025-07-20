@@ -4,17 +4,17 @@
 
 ### Setup
 
-1. Node.js muss installiert sein
-2. npm install
+1. (Node.js muss installiert sein)
+2. (npm install muss durchgeführt worden sein)
 3. npm i prisma --save-dev
-4. Erzeugen Sie eine .env Datei mit der Variable DATABASE_URL:"file:./dev.db"
+4. (Erzeugen Sie, wenn nicht vorhanden, eine .env Datei mit der Variable DATABASE_URL:"file:./dev.db")
 5. npx prisma generate
 6. npx prisma db push
 7. npm run dev
 
 ### Run
 
-Für jede weitere Ausführung reicht npm run dev.
+Für jede weitere Ausführung reicht: npm run dev.
 
 ## Implementierte Features
 
@@ -82,4 +82,4 @@ Testet Feature 4.
 
 ### SwitchDisplay.test
 
-Testet Feature 3.1.
+Testet Feature 3.1. und 3.2

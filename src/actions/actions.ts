@@ -2,20 +2,18 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createEntry(formData: FormData) {
   const tagLabels = formData.get("tags") as string;
   const labels = tagLabels
     ? tagLabels.split(",").map((label) => label.trim())
     : [];
-  const createTag = formData.get("createTag") as string;
   const stringHighlight = formData.get("highlight") as string;
   const boolHighlight: boolean = stringHighlight.toLowerCase() == "true";
-
   const createdAtString = formData.get("createdAt") as string;
-  const createdAt = createdAtString ? new Date(createdAtString) : new Date();
 
-  if (tagLabels || createTag) {
+  if (tagLabels) {
     await prisma.entry.create({
       data: {
         title: formData.get("title") as string,
@@ -29,10 +27,7 @@ export async function createEntry(formData: FormData) {
             };
           }),
         },
-        createdAt: createdAt,
-      },
-      include: {
-        tags: true,
+        createdAt: new Date(createdAtString),
       },
     });
   } else {
@@ -41,12 +36,12 @@ export async function createEntry(formData: FormData) {
         title: formData.get("title") as string,
         content: formData.get("content") as string,
         highlight: boolHighlight,
-        createdAt: createdAt,
+        createdAt: new Date(createdAtString),
       },
     });
   }
-    revalidatePath("/");
-  revalidatePath("/create");
+  revalidatePath("/");
+  redirect("/");
 }
 
 export async function updateHighlight(formData: FormData) {
@@ -64,5 +59,3 @@ export async function updateHighlight(formData: FormData) {
 
   revalidatePath("/");
 }
-
-

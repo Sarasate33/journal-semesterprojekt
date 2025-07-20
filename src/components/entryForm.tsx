@@ -34,16 +34,6 @@ export function EntryForm({ tags }: EntryFormProps) {
   const hasErrors = "errors" in state;
   const hasSuccess = "success" in state;
 
-  //source: Bijay Kumar from https://www.spguides.com/typescript-date-format/
-  function formatISODate(date: Date): string {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  }
-
-  const today = formatISODate(new Date());
-
   useEffect(() => {
     if (hasSuccess) {
       toast.success("Successfully submitted!");
@@ -105,10 +95,8 @@ export function EntryForm({ tags }: EntryFormProps) {
               Tags
             </Label>
             <ToggleGroup
-
               type="multiple"
               id="tags"
-              
               size="lg"
               value={selectedTags}
               onValueChange={setSelectedTags}
@@ -138,16 +126,17 @@ export function EntryForm({ tags }: EntryFormProps) {
               </Button>
             </div>
           </div>
-
-          <div className="py-2 px-5">
-            <Label className="py-2">Set Date</Label>
-            <Input
-              className="w-fit"
-              id="createdAt"
-              name="createdAt"
-              type="date"
-              defaultValue={today}
-            />
+          <div>
+            <div className="py-2 px-5">
+              <Label className="py-2">Set Date and Time</Label>
+              <Input
+                className="w-fit"
+                id="createdAt"
+                name="createdAt"
+                type="datetime-local"
+                defaultValue={new Date().toLocaleString("sv").slice(0, 16)}
+              />
+            </div>
           </div>
 
           <div className="py-2 px-5">

@@ -42,8 +42,8 @@ interface EntryFormProps {
   entries: Entry[];
 }
 
-const initialDisplayCount = 10;
-const loadMoreIncrement = 5;
+const initialDisplayCount = 9;
+const loadMoreIncrement = 6;
 
 export function DisplayEntries({ entries }: EntryFormProps) {
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
@@ -100,9 +100,9 @@ export function DisplayEntries({ entries }: EntryFormProps) {
                   </Toggle>
                 </div>
               </CardTitle>
-              <CardDescription className="flex flex-wrap gap-2">
+              <CardDescription className="flex flex-wrap gap-1">
                 {entryElement.tags.map((tagElement: Tag) => (
-                  <Badge key={tagElement.id} className="mr-2">
+                  <Badge className="rounded-full px-3 py-1" key={tagElement.id}>
                     {tagElement.label}
                   </Badge>
                 ))}

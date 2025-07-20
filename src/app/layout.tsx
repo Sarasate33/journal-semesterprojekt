@@ -15,7 +15,6 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <Header />
         <main className="container mx-auto">{children}</main>
-
         <Toaster richColors position="top-center" closeButton />
       </body>
     </html>
