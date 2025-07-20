@@ -6,7 +6,7 @@ import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useActionState, useEffect } from "react";
-import { EntryFormState } from "@/lib/validateEntry";
+import { EntryActionState } from "@/lib/validateEntry";
 import { toast } from "sonner";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 import { Toggle } from "./ui/toggle";
@@ -22,7 +22,7 @@ interface EntryFormProps {
   tags: Tag[];
 }
 
-const initialState: EntryFormState = { errors: {} };
+const initialState: EntryActionState = { errors: {} };
 
 export function EntryForm({ tags }: EntryFormProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -49,12 +49,12 @@ export function EntryForm({ tags }: EntryFormProps) {
     }
 
     const newTag: Tag = {
-      id: Date.now().toString(),
+      id: Date.now().toString(), // temp
       label: trimmedInput,
     };
 
-    setAllTags((prev) => [...prev, newTag]);
-    setSelectedTags((prev) => [...prev, newTag.label]);
+    setAllTags([...allTags, newTag]);
+    setSelectedTags([...selectedTags, newTag.label]);
     setNewTagInput("");
     toast.success("Tag added successfully!");
   };
@@ -89,7 +89,6 @@ export function EntryForm({ tags }: EntryFormProps) {
               </div>
             </div>
           </div>
-
           <div className="py-2 px-5">
             <Label htmlFor="tags" className="py-2">
               Tags

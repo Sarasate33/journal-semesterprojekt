@@ -3,24 +3,20 @@
 import { createEntry } from "@/actions/actions";
 import { entrySchema } from "@/lib/entrySchema";
 
-export type EntryFormState =
+export type EntryActionState =
   | { errors: { title?: string[]; content?: string[] } }
   | { success: string };
 
 export async function validateEntry(
-  prevState: EntryFormState,
+  prevState: EntryActionState,
   formData: FormData
-): Promise<EntryFormState> {
+): Promise<EntryActionState> {
   const entryFormData = Object.fromEntries(formData);
   const validatedEntryFormData = entrySchema.safeParse(entryFormData);
 
   if (!validatedEntryFormData.success) {
-    const formFieldErrors = validatedEntryFormData.error.flatten().fieldErrors;
     return {
-      errors: {
-        title: formFieldErrors?.title,
-        content: formFieldErrors?.content,
-      },
+      errors: validatedEntryFormData.error.flatten().fieldErrors,
     };
   }
 

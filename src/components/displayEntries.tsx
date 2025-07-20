@@ -25,7 +25,7 @@ import {
 import { ScrollArea } from "./ui/scroll-area";
 
 type Tag = {
-  id: string | null;
+  id: string;
   label: string;
 };
 
@@ -48,7 +48,7 @@ const loadMoreIncrement = 6;
 export function DisplayEntries({ entries }: EntryFormProps) {
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
 
-  const setString = (text: string) => {
+  const setStringMaxLength = (text: string) => {
     if (text.length <= 250) {
       return text;
     }
@@ -57,7 +57,7 @@ export function DisplayEntries({ entries }: EntryFormProps) {
   };
 
   const loadMore = () => {
-    setDisplayCount((prev) => prev + loadMoreIncrement);
+    setDisplayCount(displayCount + loadMoreIncrement);
   };
 
   const entriesToShow = entries.slice(0, displayCount);
@@ -67,12 +67,9 @@ export function DisplayEntries({ entries }: EntryFormProps) {
     <div className="px-5 py-5">
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {entriesToShow.map((entryElement) => (
-          <Card className="min-h-70 flex flex-col" key={entryElement.id}>
+          <Card className="min-h-100 flex flex-col" key={entryElement.id}>
             <CardHeader>
-              <CardTitle
-                araia-label="title"
-                className="text-2xl flex justify-between"
-              >
+              <CardTitle className="text-2xl flex justify-between">
                 <h2>{entryElement.title}</h2>
                 <div className="py-2 px-5 ">
                   <input
@@ -108,17 +105,16 @@ export function DisplayEntries({ entries }: EntryFormProps) {
                 ))}
               </CardDescription>
             </CardHeader>
-
             <CardContent className="flex-1">
               <p className="pb-5 text-black/40">
-                {entryElement.createdAt.toLocaleDateString()}
+                {entryElement.createdAt.toLocaleString("de").slice(0, 16)} Uhr
               </p>
-              <p>{setString(entryElement.content)}</p>
+              <p>{setStringMaxLength(entryElement.content)}</p>
             </CardContent>
             <CardFooter>
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="outline" aria-label="read-button">
+                  <Button variant="outline">
                     Read
                   </Button>
                 </SheetTrigger>
@@ -129,9 +125,9 @@ export function DisplayEntries({ entries }: EntryFormProps) {
                         <SheetTitle>
                           <p className="text-3xl">{entryElement.title}</p>
                         </SheetTitle>
-                        <SheetDescription className="flex flex-wrap gap-2">
+                        <SheetDescription className="flex flex-wrap gap-1">
                           {entryElement.tags.map((tagElement: Tag) => (
-                            <Badge key={tagElement.id} className="mr-2">
+                            <Badge key={tagElement.id} className="rounded-full px-3 py-1">
                               {tagElement.label}
                             </Badge>
                           ))}
@@ -139,7 +135,7 @@ export function DisplayEntries({ entries }: EntryFormProps) {
                       </SheetHeader>
                       <div className="py-2">
                         <p className="text-black/40">
-                          {entryElement.createdAt.toLocaleDateString()}
+                          {entryElement.createdAt.toLocaleString("de").slice(0, 16)} Uhr
                         </p>
                       </div>
                       <p>{entryElement.content}</p>

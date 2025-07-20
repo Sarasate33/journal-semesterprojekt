@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { DisplayEntries } from "./displayEntries";
 
 type Tag = {
-  id: string | null;
+  id: string;
   label: string;
 };
 
