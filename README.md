@@ -72,6 +72,8 @@ Diese Funktion wurde mithilfe eines useState implementiert. Es werden zunächst 
 
 Ich habe 3 Tests gebaut um 3 Pflichtfeatures zu testen
 
+Ausführung mit: npm run test
+
 ### display.test
 
 Testet Feature 1 bzw. auch ein bisschen das 3. optionale Feature. Es wird geschaut ob alle gewollten Informationen tatsächlich dargestellt wurden. Die Reihenfolge habe ich nicht getestet, da diese beim fetching der Daten von der Datenbank (orderBy) gewährleistet wird.
