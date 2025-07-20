@@ -40,7 +40,7 @@ export function SwitchDisplay({
 
   return (
     <div>
-      <div className="flex items-center py-5">
+      <div className="flex items-center py-5 px-5">
         <Button
           variant="switchAll"
           aria-label="switchAll"
@@ -51,7 +51,7 @@ export function SwitchDisplay({
         </Button>
         <p className="text center px-4">|</p>
         <Button
-        aria-label="switchHighlight"
+          aria-label="switchHighlight"
           variant="switchHighlight"
           className="flex-1 text-left"
           onClick={() => setActiveDisplay("highlights")}
