@@ -19,7 +19,7 @@ describe("Correct Display of Entries", () => {
       content: "This is the newest entry.",
       tags: [{ id: "tag1", label: "Tag1" }],
       highlight: false,
-      createdAt: new Date("2025-01-01"),
+      createdAt: new Date("2025-01-01T10:10:00.000"),
     },
     {
       id: "2",
@@ -27,7 +27,7 @@ describe("Correct Display of Entries", () => {
       content: "This is the middle entry.",
       tags: [],
       highlight: true,
-      createdAt: new Date("2024-01-01"),
+      createdAt: new Date("2024-01-01T10:10:00.000"),
     },
     {
       id: "3",
@@ -38,7 +38,7 @@ describe("Correct Display of Entries", () => {
         { id: "tag3", label: "Tag3" },
       ],
       highlight: false,
-      createdAt: new Date("2023-01-01"),
+      createdAt: new Date("2023-01-01T10:10:00.000"),
     },
   ];
 
@@ -61,9 +61,9 @@ describe("Correct Display of Entries", () => {
     expect(screen.getByText("Tag3")).toBeInTheDocument();
 
     //createdAt
-    expect(screen.getByText("1.1.2023")).toBeInTheDocument();
-    expect(screen.getByText("1.1.2024")).toBeInTheDocument();
-    expect(screen.getByText("1.1.2025")).toBeInTheDocument();
+    expect(screen.getByText("1.1.2023, 10:10 Uhr")).toBeInTheDocument();
+    expect(screen.getByText("1.1.2024, 10:10 Uhr")).toBeInTheDocument();
+    expect(screen.getByText("1.1.2025, 10:10 Uhr")).toBeInTheDocument();
   });
 });
 describe("displays entries in order they are provided", () => {
@@ -74,7 +74,7 @@ describe("displays entries in order they are provided", () => {
       content: "This is the newest entry.",
       tags: [{ id: "tag1", label: "Tag1" }],
       highlight: false,
-      createdAt: new Date("2025-01-01"),
+      createdAt: new Date("2025-01-01T10:10:00.000"),
     },
     {
       id: "2",
@@ -82,7 +82,7 @@ describe("displays entries in order they are provided", () => {
       content: "This is the middle entry.",
       tags: [],
       highlight: true,
-      createdAt: new Date("2024-01-01"),
+      createdAt: new Date("2024-01-01T10:10:00.000"),
     },
     {
       id: "1",
@@ -93,7 +93,7 @@ describe("displays entries in order they are provided", () => {
         { id: "tag3", label: "Tag3" },
       ],
       highlight: false,
-      createdAt: new Date("2023-01-01"),
+      createdAt: new Date("2023-01-01T10:10:00.000"),
     },
   ];
 
@@ -117,7 +117,7 @@ describe("displays entries in order they are provided", () => {
           { id: "tag3", label: "Tag3" },
         ],
         highlight: false,
-        createdAt: new Date("2023-01-01"),
+        createdAt: new Date("2023-01-01T10:10:00.000"),
       },
       {
         id: "2",
@@ -125,7 +125,7 @@ describe("displays entries in order they are provided", () => {
         content: "This is the middle entry.",
         tags: [],
         highlight: true,
-        createdAt: new Date("2024-01-01"),
+        createdAt: new Date("2024-01-01T10:10:00.000"),
       },
       {
         id: "3",
@@ -133,7 +133,7 @@ describe("displays entries in order they are provided", () => {
         content: "This is the newest entry.",
         tags: [{ id: "tag1", label: "Tag1" }],
         highlight: false,
-        createdAt: new Date("2025-01-01"),
+        createdAt: new Date("2025-01-01T10:10:00.000"),
       },
     ];
     render(<DisplayEntries entries={oldestEntryFirst} />);

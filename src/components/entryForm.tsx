@@ -133,7 +133,7 @@ export function EntryForm({ tags }: EntryFormProps) {
                 id="createdAt"
                 name="createdAt"
                 type="datetime-local"
-                defaultValue={new Date().toLocaleString("sv").slice(0, 16)}
+                defaultValue={new Date().toLocaleString("sv").slice(0, -3)}
               />
             </div>
           </div>

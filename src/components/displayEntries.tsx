@@ -107,7 +107,7 @@ export function DisplayEntries({ entries }: EntryFormProps) {
             </CardHeader>
             <CardContent className="flex-1">
               <p className="pb-5 text-black/40">
-                {entryElement.createdAt.toLocaleString("de").slice(0, 16)} Uhr
+                {entryElement.createdAt.toLocaleString("de").slice(0, -3)} Uhr
               </p>
               <p>{setStringMaxLength(entryElement.content)}</p>
             </CardContent>
@@ -135,7 +135,7 @@ export function DisplayEntries({ entries }: EntryFormProps) {
                       </SheetHeader>
                       <div className="py-2">
                         <p className="text-black/40">
-                          {entryElement.createdAt.toLocaleString("de").slice(0, 16)} Uhr
+                          {entryElement.createdAt.toLocaleString("sv").slice(0,-3)} Uhr
                         </p>
                       </div>
                       <p>{entryElement.content}</p>

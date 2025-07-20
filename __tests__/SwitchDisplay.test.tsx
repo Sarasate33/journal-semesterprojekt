@@ -43,7 +43,7 @@ describe("SwitchDisplay", () => {
       content: "Content 1",
       tags: [{ id: "tag1", label: "Tag 1" }],
       highlight: false,
-      createdAt: new Date("2023-01-01"),
+      createdAt: new Date("2023-01-01T10:10:00.000"),
     },
     {
       id: "2",
@@ -51,7 +51,7 @@ describe("SwitchDisplay", () => {
       content: "Content 2",
       tags: [{ id: "tag2", label: "Tag 2" }],
       highlight: true,
-      createdAt: new Date("2023-01-02"),
+      createdAt: new Date("2024-01-01T10:10:00.000"),
     },
   ];
 
@@ -62,7 +62,7 @@ describe("SwitchDisplay", () => {
       content: "Content 2",
       tags: [{ id: "tag2", label: "Tag 2" }],
       highlight: true,
-      createdAt: new Date("2023-01-02"),
+      createdAt: new Date("2024-01-01T10:10:00.000"),
     },
   ];
 
@@ -117,7 +117,7 @@ describe("SwitchDisplay", () => {
         content: "Content 1",
         tags: [{ id: "tag1", label: "Tag 1" }],
         highlight: true,
-        createdAt: new Date("2023-01-01"),
+        createdAt: new Date("2023-01-01T10:10:00.000"),
       },
       {
         id: "2",
@@ -125,7 +125,7 @@ describe("SwitchDisplay", () => {
         content: "Content 2",
         tags: [{ id: "tag2", label: "Tag 2" }],
         highlight: true,
-        createdAt: new Date("2023-01-02"),
+        createdAt: new Date("2024-01-01T10:10:00.000"),
       },
     ];
 
@@ -149,7 +149,7 @@ describe("SwitchDisplay", () => {
         content: "Content 1",
         tags: [{ id: "tag1", label: "Tag 1" }],
         highlight: true,
-        createdAt: new Date("2023-01-02"),
+        createdAt: new Date("2023-01-01T10:10:00.000"),
       },
     ];
 
